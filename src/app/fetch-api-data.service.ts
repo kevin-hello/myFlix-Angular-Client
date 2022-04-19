@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 
-const apiUrl = 'https://bestmoviecentral.herokuapp.com/';
+const apiUrl = 'https://my-flix-movies-app.herokuapp.com/';
 
 @Injectable({
   providedIn: 'root',
@@ -28,16 +28,21 @@ export class FetchApiDataService {
   }
   //POST user login endpoint
   public userLogin(userDetails: any): Observable<any> {
+    const token = localStorage.getItem('token');
     console.log(userDetails);
     return this.http
-      .post(apiUrl + 'login', userDetails)
+      .post(apiUrl + 'login', userDetails, {
+        headers: new HttpHeaders({
+          Authorization: 'Bearer ' + token,
+        }),
+      })
       .pipe(catchError(this.handleError));
   }
   //GET all movies endpoint
   public getAllMovies(): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
-      .get(apiUrl + 'movies', {
+      .get<any>(apiUrl + 'movies', {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
@@ -48,7 +53,7 @@ export class FetchApiDataService {
   public getMovies(movieTitle: any): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
-      .get(apiUrl + 'movies' + movieTitle, {
+      .get<any>(apiUrl + 'movies' + movieTitle, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
@@ -59,7 +64,7 @@ export class FetchApiDataService {
   public getDirector(directorName: any): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
-      .get(apiUrl + 'Director' + directorName, {
+      .get<any>(apiUrl + 'Director' + directorName, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
@@ -70,7 +75,7 @@ export class FetchApiDataService {
   public getGenre(genreName: any): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
-      .get(apiUrl + 'genre' + genreName, {
+      .get<any>(apiUrl + 'genre' + genreName, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
@@ -81,7 +86,7 @@ export class FetchApiDataService {
   public getUser(): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
-      .get(apiUrl + 'users', {
+      .get<any>(apiUrl + 'users', {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
@@ -92,7 +97,7 @@ export class FetchApiDataService {
   public getFavMovie(userDetails: any, movieId: any): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
-      .get(apiUrl + 'users' + userDetails + 'movies' + movieId, {
+      .get<any>(apiUrl + 'users' + userDetails + 'movies' + movieId, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
@@ -103,28 +108,28 @@ export class FetchApiDataService {
   public addFavMovie(userDetails: any, movieId: any): Observable<any> {
     console.log(userDetails);
     return this.http
-      .post(apiUrl + 'users',userDetails + 'movies', movieId)
+      .post<any>(apiUrl + 'users',userDetails + 'movies', movieId)
       .pipe(catchError(this.handleError));
   }
   //PUT edit user endpoint
   public editUser(userDetails: any): Observable<any> {
     console.log(userDetails);
     return this.http
-      .put(apiUrl + 'users', userDetails)
+      .put<any>(apiUrl + 'users', userDetails)
       .pipe(catchError(this.handleError));
   }
    //DELETE user endpoint
    public deleteUser(userDetails: any): Observable<any> {
     console.log(userDetails);
     return this.http
-      .delete(apiUrl + 'users', userDetails)
+      .delete<any>(apiUrl + 'users', userDetails)
       .pipe(catchError(this.handleError));
   }
   //DELETE fav movie
   public deleteFavMovie(userDetails: any, movieId: any): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
-      .delete(apiUrl + 'users' + userDetails + 'movies' + movieId)
+      .delete<any>(apiUrl + 'users' + userDetails + 'movies' + movieId)
       .pipe(catchError(this.handleError));
   }
 
