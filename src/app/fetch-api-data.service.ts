@@ -28,14 +28,9 @@ export class FetchApiDataService {
   }
   //POST user login endpoint
   public userLogin(userDetails: any): Observable<any> {
-    const token = localStorage.getItem('token');
     console.log(userDetails);
     return this.http
-      .post(apiUrl + 'login', userDetails, {
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' + token,
-        }),
-      })
+      .post(apiUrl + 'login', userDetails)
       .pipe(catchError(this.handleError));
   }
   //GET all movies endpoint
