@@ -104,20 +104,5 @@ export class MovieCardComponent implements OnInit {
       this.ngOnInit();
     });
         }
-/**
-   * use API endpoint to let user delete favorite movie
-   * @function deleteFavoriteMovies
-   * @param movieId 
-   * 
-   */
-  deleteFavoriteMovie(movieId: string, Title: string): void {
-    console.log(movieId);
-      this.fetchApiData.deleteFavMovie(movieId).subscribe((response: any) => {
-      console.log(response);
-      this.snackBar.open(`${Title} has been added to your favorites`, 'OK', {
-        duration: 2000
-      });
-      });
-    }
 
 }

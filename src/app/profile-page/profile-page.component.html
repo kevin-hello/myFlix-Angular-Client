@@ -34,55 +34,47 @@
   <div>
     <div *ngIf="displayElement; else message">
       <mat-card
-        *ngFor="let movie of FavMovies; let i = index"
-        class="favorite-movies"
+        *ngFor="let movie of FavMovies"
+        style="flex: 1; margin-top: 50px; margin-bottom: 50px; padding: 15px"
       >
-        <mat-card-header class="favorite-movies-title-header">
-          <mat-card-title class="favorite-movies-title">
-            {{ movie.Title }}
-          </mat-card-title>
-          <mat-card-subtitle class="director"
-            >Directed by:
-            <button
-              class="director-button"
-              mat-button
-              color="grey"
-              (click)="
-                openDirectorDialog(movie.Director.Name, movie.Director.Bio)
-              "
-            >
-              {{ movie.Director.Name }}
-            </button>
-          </mat-card-subtitle>
+        <mat-card-header>
+          <mat-card-title>{{ movie.Title }}</mat-card-title>
+          <mat-card-subtitle
+            >Directed by: {{ movie.Director.Name }}</mat-card-subtitle
+          >
         </mat-card-header>
-        <img src="{{ movie.ImagePath }}" alt="{{ movie.Title }}" />
+        <img
+          style="width: 325px; height: 400px"
+          src="{{ movie.ImagePath }}"
+          alt=" {{ movie.Title }}"
+        />
         <mat-card-actions>
           <button
-            class="genre-button"
-            mat-raised-button
+            mat-button
             color="primary"
             (click)="openGenreDialog(movie.Genre.Name, movie.Genre.Description)"
           >
-            {{ movie.Genre.Name }}
+            Genre
           </button>
-
           <button
-            class="description-button"
-            mat-raised-button
+            mat-button
+            color="primary"
+            (click)="
+              openDirectorDialog(movie.Director.Name, movie.Director.Bio)
+            "
+          >
+            Director
+          </button>
+          <button
+            mat-button
             color="primary"
             (click)="openDescriptionDialog(movie.Title, movie.Description)"
           >
             Description
           </button>
-
-          <mat-card-actions>
-            <button
-              mat-icon-button
-              (click)="deleteFavMovie(movie._id, movie.Title)"
-            >
-              <mat-icon>delete_outline</mat-icon>
-            </button>
-          </mat-card-actions>
+          <button mat-icon-button (click)="deleteFavMovie(movie._id)">
+            <mat-icon>delete_outline</mat-icon>
+          </button>
         </mat-card-actions>
       </mat-card>
     </div>

@@ -18,6 +18,7 @@ export class ProfilePageComponent implements OnInit {
   user: any = {};
   movies: any[] = [];
   Username: any = localStorage.getItem('user');
+  favs: any = null;
   FavMovies: any[] = [];
   displayElement: boolean = false
 
@@ -30,7 +31,6 @@ export class ProfilePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUser();
-    this.getFavMovie();
   }
 
   /**
@@ -39,58 +39,34 @@ export class ProfilePageComponent implements OnInit {
    * @param Username
    * @return user data in JSON format
    */
-  getUser(): void {
+   getUser(): void {
     const user = localStorage.getItem('user');
     if (user) {
       this.fetchApiData.getUser(user).subscribe((resp: any) => {
         this.user = resp;
-        console.log(this.user);
+        this.FavMovies = resp.FavoriteMovies;
+        this.displayElement = true;
       });
     }
   }
 
-/**
- * function to let the user display their favorite movies 
- * @function getAllMovies
- */  
-  getFavMovie(): void {
-    let movies: any[] = [];
-    const user = localStorage.getItem('user');
-    this.fetchApiData.getAllMovies().subscribe((resp: any) => {
-      movies = resp;
-      movies.forEach((movie: any) => {
-        if (this.user.FavoriteMovies.includes(movie._id)) {
-          this.FavMovies.push(movie);
-          this.displayElement = true;
-        }
-      });
-    });
-    console.log(this.FavMovies);
-  }
-  
 
-  /**
-   * function to let the user remove a movie from their favorited movies
-   * @function deleteFavMovie
+ /**
+   * use API endpoint to let user delete favorite movie
+   * @function deleteFavoriteMovies
    * @param movieId 
-   * @param Title 
-   * @returns updated user data in JSON format
+   * 
    */
-  deleteFavMovie(movieId: string, Title: string): void {
-    this.fetchApiData.deleteFavMovie(movieId).subscribe((resp) => {
-      console.log(resp);
-      this.snackBar.open(
-        `${Title} has been removed from your favorites`,
-        'OK',
-        {
-          duration: 1000,
-        }
-      );
-      setTimeout(function () {
-        window.location.reload();
-      }, 1000);
-    });
-  }
+  deleteFavMovie(movieId: string): void {
+      this.fetchApiData.deleteFavMovie(movieId).subscribe((response: any) => {
+      console.log(response);
+      this.snackBar.open(`this movie has been removed from your favorites`, 'OK', {
+        duration: 2000,
+      });
+      this.ngOnInit();
+      return this.favs;
+      });
+    }
 
   /**
    * dialog to edit user information
