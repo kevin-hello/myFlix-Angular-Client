@@ -72,7 +72,10 @@
           >
             Description
           </button>
-          <button mat-icon-button (click)="deleteFavMovie(movie._id)">
+          <button
+            mat-icon-button
+            (click)="deleteFavMovie(movie._id, movie.Title)"
+          >
             <mat-icon>delete_outline</mat-icon>
           </button>
         </mat-card-actions>

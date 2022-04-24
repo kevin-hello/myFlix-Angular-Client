@@ -57,10 +57,10 @@ export class ProfilePageComponent implements OnInit {
    * @param movieId 
    * 
    */
-  deleteFavMovie(movieId: string): void {
+  deleteFavMovie(movieId: string, Title: string): void {
       this.fetchApiData.deleteFavMovie(movieId).subscribe((response: any) => {
       console.log(response);
-      this.snackBar.open(`this movie has been removed from your favorites`, 'OK', {
+      this.snackBar.open(`${Title} has been removed from your favorites`, 'OK', {
         duration: 2000,
       });
       this.ngOnInit();
