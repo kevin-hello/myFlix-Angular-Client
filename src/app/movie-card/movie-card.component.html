@@ -1,19 +1,19 @@
 <app-navbar></app-navbar>
-<div style="display: flex; flex-wrap: wrap; margin: 0%; padding: 0%">
+<div style="display: flex; flex-wrap: wrap; margin: 0 auto; padding: 0%">
   <mat-card
     *ngFor="let movie of movies"
-    style="flex: 1; margin-top: 50px; margin-bottom: 50px; padding: 15px"
+    style="flex: 0 0 23%; margin: 15px 5px; padding: 5px"
   >
     <mat-card-header>
       <mat-card-title>{{ movie.Title }}</mat-card-title>
       <mat-card-subtitle>Genre: {{ movie.Genre.Name }}</mat-card-subtitle>
     </mat-card-header>
     <img
-      style="width: auto; height: 400px"
+      style="width: auto; height: 500px; margin-left: 1em"
       src="{{ movie.ImagePath }}"
       alt=" {{ movie.Title }}"
     />
-    <mat-card-actions>
+    <mat-card-actions style="margin-left: 1em">
       <button mat-button color="primary" (click)="openGenreDialog(movie.Genre)">
         Genre
       </button>
