@@ -39,7 +39,7 @@
         *ngFor="let movie of FavMovies"
         style="flex: 0 0 23%; margin: 10px 5px; padding: 5px"
       >
-        <mat-card-header>
+        <mat-card-header style="margin-top: 5px">
           <mat-card-title>{{ movie.Title }}</mat-card-title>
           <mat-card-subtitle>Genre: {{ movie.Genre.Name }}</mat-card-subtitle>
         </mat-card-header>
@@ -48,7 +48,7 @@
           src="{{ movie.ImagePath }}"
           alt=" {{ movie.Title }}"
         />
-        <mat-card-actions style="margin-left: 1em">
+        <mat-card-actions style="margin-left: 1em; margin-bottom: 2px">
           <button
             mat-button
             color="primary"
