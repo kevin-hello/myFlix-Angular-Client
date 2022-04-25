@@ -6,12 +6,10 @@
   >
     <mat-card-header>
       <mat-card-title>{{ movie.Title }}</mat-card-title>
-      <mat-card-subtitle
-        >Directed by: {{ movie.Director.Name }}</mat-card-subtitle
-      >
+      <mat-card-subtitle>Genre: {{ movie.Genre.Name }}</mat-card-subtitle>
     </mat-card-header>
     <img
-      style="width: 325px; height: 400px"
+      style="width: auto; height: 400px"
       src="{{ movie.ImagePath }}"
       alt=" {{ movie.Title }}"
     />

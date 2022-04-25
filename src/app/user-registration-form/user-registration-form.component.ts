@@ -1,3 +1,8 @@
+/**
+ * The UserRegistrationFormComponent is used to register a new user.
+ * @module UserRegistrationFormComponent
+ */
+
 // src/app/user-registration-form/user-registration-form.component.ts
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -17,8 +22,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./user-registration-form.component.scss']
 })
 export class UserRegistrationFormComponent implements OnInit {
-
-  @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
+  /**
+   * get input data of user and stores in userCredentials
+   */
+  @Input() userData = { 
+    Username: '', 
+    Password: '', 
+    Email: '', 
+    Birthday: '', 
+  };
 
 constructor(
     public fetchApiData: FetchApiDataService,
@@ -28,11 +40,15 @@ constructor(
 ngOnInit(): void {
 }
 
-// This is the function responsible for sending the form inputs to the backend
+ /**
+   * call API endpoint to register a new user
+   * @function registerUser
+   * @param userData{object}
+   * @return new users data in json format
+   */
 registerUser(): void {
     this.fetchApiData.userRegistration(this.userData).subscribe((result) => {
-  // Logic for a successful user registration goes here! (To be implemented)
-     this.dialogRef.close(); // This will close the modal on success!
+     this.dialogRef.close();
      console.log(result);
      this.snackBar.open('user registered successfully', 'OK', {
         duration: 2000

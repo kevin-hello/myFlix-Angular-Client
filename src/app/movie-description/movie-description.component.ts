@@ -1,3 +1,8 @@
+/**
+ * The MovieDescriptionComponent is used to render the movie description.
+ * @module MovieDescriptionComponent
+ */
+
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -8,6 +13,11 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class MovieDescriptionComponent implements OnInit {
   Description: any;
+
+  /**
+   *
+   * @param data
+   */
   constructor(@Inject(MAT_DIALOG_DATA) private data: { Description: any }) {}
 
   ngOnInit(): void {

@@ -1,3 +1,8 @@
+/**
+ * The ProfilePageComponent is used to view the user profile.
+ * @module ProfilePageComponent
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -36,8 +41,8 @@ export class ProfilePageComponent implements OnInit {
   /**
    * calls API endpoint to get user info
    * @function getUser
-   * @param Username
-   * @return user data in JSON format
+   * @param user {any}
+   * @return user data in JSON format including user's favorite movies array
    */
    getUser(): void {
     const user = localStorage.getItem('user');
@@ -54,8 +59,9 @@ export class ProfilePageComponent implements OnInit {
  /**
    * use API endpoint to let user delete favorite movie
    * @function deleteFavoriteMovies
-   * @param movieId 
-   * 
+   * @param movieId {string}
+   * @param Title {string}
+   * @returns updated users data in json format
    */
   deleteFavMovie(movieId: string, Title: string): void {
       this.fetchApiData.deleteFavMovie(movieId).subscribe((response: any) => {
@@ -69,7 +75,8 @@ export class ProfilePageComponent implements OnInit {
     }
 
   /**
-   * dialog to edit user information
+   * open dialog to display the edit user form
+   * @module EditUserFormComponent
    */
   openUserEditDialog(): void {
     this.dialog.open(EditUserFormComponent, {
@@ -79,7 +86,8 @@ export class ProfilePageComponent implements OnInit {
   }
 
   /**
-   * dialog to delete user
+   * open dialog to display the delete user form
+   * @module DeleteUserFormComponent
    */
   openUserDeleteDialog(): void {
     this.dialog.open(DeleteUserFormComponent, {
@@ -88,42 +96,39 @@ export class ProfilePageComponent implements OnInit {
     });
   }
 
-  /**
-   * open Genre dialog
-   * @param name 
-   * @param description 
+   /**
+   * open dialog to display the genre info
+   * @module MovieGenreComponent
+   * @param Genre {any}
    */
-  openGenreDialog(name: string, description: string): void {
-    this.dialog.open(MovieGenreComponent, {
-      panelClass: 'custom-dialog-container',
-      data: { name, description },
-      width: '500px',
-    });
-  }
-  
+    openGenreDialog(Genre: any): void {
+      this.dialog.open(MovieGenreComponent, {
+        width: '400px',
+        data: { Genre },
+      });
+    }
   /**
-   * open Director dialog
-   * @param name 
-   * @param bio 
+   * open dialog to display the Director info
+   * @module MovieDirectorComponent
+   * @param Director {any}
    */
-  openDirectorDialog(name: string, bio: string): void {
+   openDirectorDialog(Director: any): void {
     this.dialog.open(MovieDirectorComponent, {
-      panelClass: 'custom-dialog-container',
-      data: {name, bio},
-      width: '500px',
+      width: '400px',
+      data: { Director },
     });
   }
   
   /**
-   * open description dialog
-   * @param title 
-   * @param description 
+   * open dialog to display the movie description info
+   * @module MovieDescriptionComponent
+   * @param Description {any}
    */
-  openDescriptionDialog(title: string, description: string): void {
-    this.dialog.open(MovieDescriptionComponent, {
-      panelClass: 'custom-dialog-container',
-      data: { title, description}
-    })
-  }  
+ openDescriptionDialog(Description: any): void {
+  this.dialog.open(MovieDescriptionComponent, {
+    width: '400px',
+    data: { Description },
+  });
+} 
 
 }

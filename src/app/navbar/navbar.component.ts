@@ -20,13 +20,13 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
   }
-    /**
+  /**
    * Routes user to movies page
    */
   goToMovies(): void {
     this.router.navigate(['movies']);
   }
-    /**
+  /**
    * Routes user to profile page
    */
   goToProfilePage(): void {
@@ -35,7 +35,7 @@ export class NavbarComponent implements OnInit {
   /**
    * Logs a user out
    * clears the localStorage
-   * Re-routes to welcome page
+   * Re-directs to welcome page
    */
   logOut(): void {
     localStorage.clear();

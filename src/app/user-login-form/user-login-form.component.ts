@@ -1,3 +1,8 @@
+/**
+ * The UserLoginFormComponent is used to login users.
+ * @module UserLoginFormComponent
+ */
+
 // src/app/user-registration-form/user-registration-form.component.ts
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -18,7 +23,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-login-form.component.scss']
 })
 export class UserLoginFormComponent implements OnInit {
-
+  /**
+   * get input info and store it in userData
+   */
   @Input() userData = { Username: '', Password: '' };
 
 constructor(
@@ -30,10 +37,15 @@ constructor(
 ngOnInit(): void {
 }
 
-// This is the function responsible for sending the form inputs to the backend
+/**
+   * Login user via input field by using API endpoint
+   * And store the users data in localstorage
+   * @function userLogin
+   * @param userData {object}
+   * @return users data in json format
+   */
 loginUser(): void {
     this.fetchApiData.userLogin(this.userData).subscribe((result) => {
-  // Logic for a successful user registration goes here! (To be implemented)
     console.log(result);   
     localStorage.setItem('user', result.user.Username);
     localStorage.setItem('token', result.token);

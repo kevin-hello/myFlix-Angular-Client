@@ -1,3 +1,8 @@
+/**
+ * The Moviecard component renders the movies collection retreived from the myFlix database.
+ * @module MovieCardComponent
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 
@@ -31,7 +36,7 @@ export class MovieCardComponent implements OnInit {
     }
   /**
    * use Api call to get data of all movies
-   * @function getAllMovies
+   * @function getMovies
    * @return movies in json format
    */
   getMovies(): void {
@@ -41,7 +46,11 @@ export class MovieCardComponent implements OnInit {
       return this.movies;
     });
   }
-
+  /**
+   * use Api call to get user data
+   * @function getUserInfo
+   * @return user data in json format
+   */
   getUserInfo(): void{
     const username = localStorage.getItem('user');
     this.fetchApiData.getUser(username).subscribe((resp: any) => {
@@ -56,9 +65,10 @@ export class MovieCardComponent implements OnInit {
    }
 
   /**
-   * Open the director component to view info
-   * @param Director
-    */
+   * open dialog to display the Director info
+   * @module MovieDirectorComponent
+   * @param Director {any}
+   */
   openDirectorDialog(Director: any): void {
     this.dialog.open(MovieDirectorComponent, {
       width: '400px',
@@ -67,16 +77,21 @@ export class MovieCardComponent implements OnInit {
   }
 
   /**
-   * Open the genre component to view info
-   * @param Genre  
-    */
+   * open dialog to display the genre info
+   * @module MovieGenreComponent
+   * @param Genre {any}
+   */
   openGenreDialog(Genre: any): void {
     this.dialog.open(MovieGenreComponent, {
       width: '400px',
       data: { Genre },
     });
   }
-
+  /**
+   * open dialog to display the movie description info
+   * @module MovieDescriptionComponent
+   * @param Description {any}
+   */
   openDescriptionDialog(Description: any): void {
     this.dialog.open(MovieDescriptionComponent, {
       width: '400px',
@@ -86,7 +101,8 @@ export class MovieCardComponent implements OnInit {
 /**
    * use API endpoint to let user add favorite movie
    * @function addFavoriteMovies
-   * @param movieId 
+   * @param movieId {string}
+   * @param Title {string}
    * @returns an array of the movie object in json format
    */
  addFavoriteMovies(movieId: string, Title: string): void {

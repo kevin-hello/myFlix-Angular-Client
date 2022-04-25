@@ -1,3 +1,8 @@
+/**
+ * The EditUserFormComponent is used to render information about the user and edit it.
+ * @module EditUserFormComponent
+ */
+
 import { Component, Input, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -12,6 +17,9 @@ export class EditUserFormComponent implements OnInit {
   Username = localStorage.getItem('user');
   user: any = {};
 
+  /**
+   *  Binding input values to the userProfile object
+   */
   @Input() userData = { 
     Username: this.user.Username,
     Password: this.user.Password,
@@ -31,6 +39,7 @@ export class EditUserFormComponent implements OnInit {
   /**
    * function to get user info
    * @function getUser
+   * @param user {any}
    * @returns user info
    */
    getUser(): void {
@@ -45,7 +54,8 @@ export class EditUserFormComponent implements OnInit {
   /**
    * function to edit user info
    * @function editUser
-   * @param userData
+   * @param userData {any}
+   * @param Username
    * @returns updated user info in JSON format + storage in localStorage
    */
   editUser(): void {

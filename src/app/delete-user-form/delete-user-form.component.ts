@@ -1,3 +1,9 @@
+/**
+ * The DeleteUserFormComponent is used to delete the user data after user confirmation.
+ * @module DeleteUserFormComponent
+ */
+
+
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';

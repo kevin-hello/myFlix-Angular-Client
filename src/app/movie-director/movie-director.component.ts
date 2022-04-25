@@ -1,3 +1,8 @@
+/**
+ * The MovieDirectorComponent is used to render information about the directors.
+ * @module MovieDirectorComponent
+ */
+
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -7,6 +12,10 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   templateUrl: './movie-director.component.html',
   styleUrls: ['./movie-director.component.scss'],
 })
+/**
+ *
+ * @param data
+ */
 export class MovieDirectorComponent implements OnInit {
 
   Director: any;

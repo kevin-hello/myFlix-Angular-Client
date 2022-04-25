@@ -195,7 +195,7 @@ export class FetchApiDataService {
 /**
  * call API endpoint to delete a user
  * @function deleteUser
- * @param userDetails 
+ *
  * @returns delete status
  */
  public deleteUser(): Observable<any> {
