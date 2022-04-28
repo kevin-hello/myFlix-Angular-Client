@@ -34,16 +34,17 @@ export class DeleteUserFormComponent implements OnInit {
    * @function deleteUser
    * @returns delete status and reroutes to welcome page 
    */
-  deleteUser(): void {
+   deleteUser(): void {
     if (confirm('Are you sure? This cannot be undone.')) {
+      this.router.navigate(['welcome']).then(() => {
+        this.snackBar.open('Your account was deleted', 'OK', {duration: 6000});
+      });
+      this.router.navigate(['welcome'])
       this.fetchApiData.deleteUser().subscribe(() => {
-        this.snackBar.open(`user has been deleted!`, 'OK', {
-          duration: 4000,
-        });
         localStorage.clear();
       });
-      this.router.navigate(['welcome']);
     }
+  
   }
 
   closeDialog(): void {
