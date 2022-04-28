@@ -37,7 +37,7 @@ export class DeleteUserFormComponent implements OnInit {
   deleteUser(): void {
     if (confirm('Are you sure? This cannot be undone.')) {
       this.fetchApiData.deleteUser().subscribe(() => {
-        this.snackBar.open(`${this.user.Username} has been removed!`, 'OK', {
+        this.snackBar.open(`user has been deleted!`, 'OK', {
           duration: 4000,
         });
         localStorage.clear();
