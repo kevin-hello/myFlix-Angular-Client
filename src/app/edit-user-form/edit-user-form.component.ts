@@ -14,13 +14,13 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./edit-user-form.component.scss']
 })
 export class EditUserFormComponent implements OnInit {
-  username: any = localStorage.getItem('user');
-  user: any = JSON.parse(this.username);
+  Username = localStorage.getItem('user');
+  user: any = {};
 
   /**
    *  Binding input values to the userProfile object
    */
-  @Input() userData = { 
+  @Input() userDetails = { 
     Username: this.user.Username,
     Password: this.user.Password,
     Email: this.user.Email,
@@ -54,23 +54,22 @@ export class EditUserFormComponent implements OnInit {
   /**
    * function to edit user info
    * @function editUser
-   * @param userData {any}
+   * @param userDetails {any}
    * @param Username
    * @returns updated user info in JSON format + storage in localStorage
    */
   editUser(): void {
-    this.fetchApiData.editUser(this.userData).subscribe((resp) => {
+    this.fetchApiData.editUser(this.userDetails).subscribe((resp) => {
       this.dialogRef.close();
-      localStorage.setItem('user', JSON.stringify(resp));
+      localStorage.setItem('user', resp.Username);
       this.snackBar.open('Your profile info was updated successfully.', 'OK', {
-        duration: 4000
+        duration: 2000
       });
       setTimeout(() => {
         window.location.reload();
       });
     });
   }
-
   closeDialog(): void {
     this.dialogRef.close();
   }
