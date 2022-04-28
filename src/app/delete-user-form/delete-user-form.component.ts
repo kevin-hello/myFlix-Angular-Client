@@ -16,8 +16,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./delete-user-form.component.scss']
 })
 export class DeleteUserFormComponent implements OnInit {
-  username: any = localStorage.getItem('user');
-  user: any = JSON.parse(this.username);
+  Username = localStorage.getItem('user');
+  user: any = {};
   
   constructor(
     public fetchApiData: FetchApiDataService,
