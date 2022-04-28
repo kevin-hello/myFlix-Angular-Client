@@ -16,7 +16,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./delete-user-form.component.scss']
 })
 export class DeleteUserFormComponent implements OnInit {
-
+  username: any = localStorage.getItem('user');
+  user: any = JSON.parse(this.username);
+  
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
@@ -34,16 +36,14 @@ export class DeleteUserFormComponent implements OnInit {
    */
   deleteUser(): void {
     if (confirm('Are you sure? This cannot be undone.')) {
-      this.router.navigate(['welcome']).then(() => {
-        this.snackBar.open('Your account was deleted', 'OK', {duration: 6000});
-      });
-      this.dialogRef.close();
-      this.router.navigate(['welcome'])
       this.fetchApiData.deleteUser().subscribe(() => {
+        this.snackBar.open(`${this.user.Username} has been removed!`, 'OK', {
+          duration: 4000,
+        });
         localStorage.clear();
       });
+      this.router.navigate(['welcome']);
     }
-  
   }
 
   closeDialog(): void {

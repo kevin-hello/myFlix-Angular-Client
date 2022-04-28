@@ -14,8 +14,8 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./edit-user-form.component.scss']
 })
 export class EditUserFormComponent implements OnInit {
-  Username = localStorage.getItem('user');
-  user: any = {};
+  username: any = localStorage.getItem('user');
+  user: any = JSON.parse(this.username);
 
   /**
    *  Binding input values to the userProfile object
@@ -55,14 +55,15 @@ export class EditUserFormComponent implements OnInit {
    * function to edit user info
    * @function editUser
    * @param userData {any}
+   * @param Username
    * @returns updated user info in JSON format + storage in localStorage
    */
   editUser(): void {
     this.fetchApiData.editUser(this.userData).subscribe((resp) => {
       this.dialogRef.close();
-      localStorage.setItem('user', resp.userData);
+      localStorage.setItem('user', JSON.stringify(resp));
       this.snackBar.open('Your profile info was updated successfully.', 'OK', {
-        duration: 2000
+        duration: 4000
       });
       setTimeout(() => {
         window.location.reload();

@@ -25,13 +25,14 @@ export class ProfilePageComponent implements OnInit {
   Username: any = localStorage.getItem('user');
   favs: any = null;
   FavMovies: any[] = [];
-  displayElement: boolean = false
+  displayElement: boolean = false;
 
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
-    public router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public router: Router
+
   ) {}
 
   ngOnInit(): void {
