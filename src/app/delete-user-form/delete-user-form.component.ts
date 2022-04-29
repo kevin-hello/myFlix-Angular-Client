@@ -39,6 +39,7 @@ export class DeleteUserFormComponent implements OnInit {
       this.router.navigate(['welcome']).then(() => {
         this.snackBar.open('Your account was deleted', 'OK', {duration: 6000});
       });
+      this.dialogRef.close();
       this.router.navigate(['welcome'])
       this.fetchApiData.deleteUser().subscribe(() => {
         localStorage.clear();
